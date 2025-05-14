@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Welcome, {{ username }}!</h2>
+<div class="dashboard">
+    <div>
+        <h3>Your Profile</h3>
+        <!-- Profile content here -->
+        <ul>
+            <li><b>Age:</b> {{ user_profile.age or 'Not set' }}</li>
+            <li><b>Weight:</b> {{ user_profile.weight or 'Not set' }} kg</li>
+            <li><b>Gender:</b> {{ user_profile.gender or 'Not set' }}</li>
+            <li><b>Goal:</b> 
+                {% if user_profile.goal == 'lose' %}Lose Weight
+                {% elif user_profile.goal == 'gain' %}Gain Weight
+                {% elif user_profile.goal == 'maintain' %}Maintain Weight
+                {% else %}Not set{% endif %}
+            </li>
+        </ul>
+        <a href="{{ url_for('profile') }}">Edit Profile</a>
+    </div>
+   <div>
+    <h3>Recipes</h3>
+    <div class="recipe-categories">
+        <a href="{{ url_for('recipes', type='breakfast') }}">
+            <button class="category-btn">Breakfast</button>
+        </a>
+        <a href="{{ url_for('recipes', type='salad') }}">
+            <button class="category-btn">Salad</button>
+        </a>
+        <a href="{{ url_for('recipes', type='smoothie') }}">
+            <button class="category-btn">Smoothie</button>
+        </a>
+    </div>
+    <a href="{{ url_for('recipes') }}">View/Add Recipes</a>
+</div>
+    <div>
+        <h3>Gym Nutrition</h3>
+        <a href="{{ url_for('gym') }}">Check your requirements</a>
+    </div>
+</div>
+{% endblock %} 

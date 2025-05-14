@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin - Approve Recipes</h2>
+
+{% if pending %}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Calories</th>
+        <th>Protein (g)</th>
+        <th>Carbs (g)</th>
+        <th>Fats (g)</th>
+        <th>Ingredients</th>
+        <th>Instructions</th>
+        <th>Action</th>
+    </tr>
+    {% for recipe in pending %}
+    <tr>
+        <td>{{ recipe.name }}</td>
+        <td>{{ recipe.type|capitalize }}</td>
+        <td>{{ recipe.calories or 'N/A' }}</td>
+        <td>{{ recipe.protein or 'N/A' }}</td>
+        <td>{{ recipe.carbs or 'N/A' }}</td>
+        <td>{{ recipe.fats or 'N/A' }}</td>
+        <td>{{ recipe.ingredients }}</td>
+        <td>{{ recipe.instructions }}</td>
+        <td>
+            <form method="post">
+                <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+                <button type="submit">Approve</button>
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No recipes pending approval.</p>
+{% endif %}
+{% endblock %}

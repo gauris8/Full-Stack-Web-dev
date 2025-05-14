@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="recipe-detail">
+    <img src="{{ recipe.image_url if recipe.image_url else url_for('static', filename='default_recipe.jpg') }}" alt="{{ recipe.name }}" style="max-width: 400px; border-radius: 10px;">
+    <h2>{{ recipe.name }}</h2>
+    <p class="type">{{ recipe.type|capitalize }}</p>
+    <div class="nutrition-info">
+    <h4><i class="fas fa-apple-alt"></i> Nutrition (per recipe):</h4>
+    <ul>
+        <li><i class="fas fa-fire"></i> Calories: {{ recipe.calories or 'N/A' }}</li>
+        <li><i class="fas fa-drumstick-bite"></i> Protein: {{ recipe.protein or 'N/A' }}g</li>
+        <li><i class="fas fa-bread-slice"></i> Carbs: {{ recipe.carbs or 'N/A' }}g</li>
+        <li><i class="fas fa-bacon"></i> Fats: {{ recipe.fats or 'N/A' }}g</li>
+    </ul>
+</div>
+    <h4>Ingredients</h4>
+    <ul>
+    {% for ing in recipe.ingredients.split('\n') %}
+        <li>{{ ing }}</li>
+    {% endfor %}
+    </ul>
+    <h4>Instructions</h4>
+    <p>{{ recipe.instructions }}</p>
+    <a href="{{ url_for('recipes') }}">Back to Recipes</a>
+</div>
+<div class="shop-links">
+    <h4><i class="fas fa-shopping-cart"></i> Shop for Ingredients:</h4>
+    <div class="shop-link-buttons">
+        <a href="https://blinkit.com/" target="_blank"><i class="fas fa-shopping-basket"></i> Blinkit</a>
+        <a href="https://www.bigbasket.com/" target="_blank"><i class="fas fa-shopping-basket"></i> BigBasket</a>
+        <a href="https://www.zeptonow.com/" target="_blank"><i class="fas fa-shopping-basket"></i> Zepto</a>
+        <a href="https://www.zomato.com/instamart" target="_blank"><i class="fas fa-shopping-basket"></i> Zomato Instamart</a>
+    </div>
+</div>
+</div>
+{% endblock %}
