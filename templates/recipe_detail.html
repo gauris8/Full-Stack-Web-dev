@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="recipe-detail">
-    <img src="{{ recipe.image_url if recipe.image_url else url_for('static', filename='default_recipe.jpg') }}" alt="{{ recipe.name }}" style="max-width: 400px; border-radius: 10px;">
+   <img src="{{ url_for('static', filename=recipe.image_url) if recipe.image_url else url_for('static', filename='default_recipe.jpg') }}" alt="{{ recipe.name }}" style="max-width: 400px; border-radius: 10px;">
     <h2>{{ recipe.name }}</h2>
     <p class="type">{{ recipe.type|capitalize }}</p>
     <div class="nutrition-info">
