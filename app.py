@@ -12,8 +12,8 @@ def get_db():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="nameless1014@",  # <-- change to your MySQL password
-        database="nutrigym"          # <-- change to your database name
+        password="gauri@sql",  # <-- change to your MySQL password
+        database="NutriGym"          # <-- change to your database name
     )
 
 def login_required(f):

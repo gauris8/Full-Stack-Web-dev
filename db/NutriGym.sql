@@ -1,10 +1,15 @@
--- Users Table
+CREATE DATABASE IF NOT EXISTS NUTRIGYM;
+
+USE NUTRIGYM;
+
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    is_admin BOOLEAN DEFAULT FALSE
+    is_admin BOOLEAN DEFAULT FALSE,
+    age INT NULL,
+    weight FLOAT NULL
 );
 
 -- Nutrition Table
@@ -53,3 +58,24 @@ INSERT INTO recipes (user_id, name, type, ingredients, instructions, is_approved
 (NULL, 'Mango Lassi', 'smoothie', 'Mango, Yogurt, Honey, Cardamom', 'Blend mango with yogurt, honey, and cardamom.', TRUE),
 (NULL, 'Peanut Butter Banana Smoothie', 'smoothie', 'Banana, Peanut butter, Milk, Honey', 'Blend all ingredients until smooth.', TRUE),
 (NULL, 'Pineapple Coconut Smoothie', 'smoothie', 'Pineapple, Coconut milk, Banana, Ice', 'Blend all ingredients until smooth.', TRUE); 
+
+SELECT User, Host, authentication_string, plugin
+  FROM mysql.user
+  WHERE User = 'root';
+  
+show tables;
+
+describe users;
+
+ALTER TABLE USERS ADD age INT NULL;
+ALTER TABLE USERS ADD weight FLOAT NULL;
+ALTER TABLE USERS ADD gender ENUM('Male', 'Female', 'Other');
+ALTER TABLE USERS ADD goal ENUM('lose','gain','maintain');
+
+ALTER TABLE USERS
+CHANGE COLUMN GENDER gender ENUM('Male', 'Female', 'Other') NULL;
+
+COMMIT;
+
+
+
