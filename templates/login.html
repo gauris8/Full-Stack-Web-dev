@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>NutriGym Login</title>
+{% extends "base_auth.html" %}
+
+{% block content %}
+
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-    <script src="https://kit.fontawesome.com/cdbcc992f6.js" crossorigin="anonymous"></script>
-</head>
-<body>
+
     <div class="login-container">
         <div class="info-box">
             <h1><i class="fas fa-apple-alt"></i> Welcome to NutriGym!</h1>
@@ -30,5 +28,6 @@
         </form>
         {% include 'fact_box.html' %}
     </div>
-</body>
-</html>
+
+{% endblock %}
+
